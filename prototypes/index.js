@@ -18,26 +18,69 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
-  orangePetNames() {
-    // Return an array of just the names of kitties who are orange e.g.
+      // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
-        /* CODE GOES HERE */
+// kitties is an array of objects
+// go to kitties array and use array method 
+// select kitties based on color (orange)
+// return names
 
-    // Annotation:
-    // Write your annotation here as a comment
-  },
+orangePetNames(animals) {
+  const orangePets = animals.filter((pet) => {
+    console.log(animals);
+    // console.log("31", kitty)
+    // console.log("32", kitty.color)
+    return pet.color === 'orange';
+  
+  })
+  // console.log("35", orangeCats)
+  //orangeCats variable outputs an array with 2 objects
+  // [
+  //   { name: 'Tiger', age: 5, color: 'orange' },
+  //   { name: 'Snickers', age: 8, color: 'orange' }
+  // ]
+  //go to orangeCats and grab each name
+  const orangeAnimalNamesOnly = orangePets.map((pet) => {
+    // console.log("43", cat.name);
+    //cat is each cat object (no longer in array)
+    // Tiger
+    // Snickers
+    return pet.name;
+  })
+  // console.log("47", orangeCatNamesOnly);
+  return orangeAnimalNamesOnly;
+},
+// CHAINING FILTER AND MAP
+//   orangePetNames() {
+//     const orangeKitties = kitties.filter((kitty) => {
+//       return kitty.color === 'orange';
+//     }).map((cat) => {
+//       return cat.name
+//     })
+//     return orangeKitties
+//   },
 
-  sortByAge() {
+  sortByAge(animals) {
+    //by default sort() sorts array by ascending
+
+      // const sortedByAge = kitties.sort((firstCat, secondCat) => secondCat.age - firstCat.age)
+      // return sortedByAge;
+    
+      const sortedByAge = animals.sort((firstPet, secondPet) => {
+        return secondPet.age - firstPet.age
+      })
+
+      return sortedByAge;
+
     // Sort the kitties by their age
+    // sort from oldest to youngest
+    // how to sort after getting each cat?
+    // Use .sort() ??
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
   },
 
-  growUp() {
+  growUp(animals) {
     // Return an array of kitties who have all grown up by 2 years e.g.
     // [{
     //   name: 'Felicia',
@@ -51,7 +94,17 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    /* CODE GOES HERE */
+ 
+// increase each cats age by 1
+// input: array of cats objects
+// output: return an array of older cats objects
+// use .map()
+
+    const olderPet = animals.map((pet) => {
+      pet.age += 2;
+      return pet;
+    })
+    return olderPet;
   }
 };
 
