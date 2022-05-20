@@ -28,7 +28,7 @@ const kittyPrompts = {
 
 orangePetNames(animals) {
   const orangePets = animals.filter((pet) => {
-    console.log(animals);
+    // console.log(animals);
     // console.log("31", kitty)
     // console.log("32", kitty.color)
     return pet.color === 'orange';
@@ -173,10 +173,20 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    // input: mods array of 4 objects with 3 keys
+    // output: array of 4 objects (same length as original array) with 2 keys
+    // map()?
+    // create new key studentsPerInstructor and assign it to students / instructors
+    
+    const newArray = mods.map((modObj) => {
+      // console.log(modObj)
+      const shortObj = {
+        mod: modObj.mod, 
+        studentsPerInstructor: modObj.students/modObj.instructors
+      }
+      return shortObj
+    })
+      return newArray;
   }
 };
 
@@ -207,10 +217,20 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    /* CODE GOES HERE */
+  //input: cakes array of objects
+  //output: cakes array of objects with just flavor and inStock
+  //map()
 
-    // Annotation:
-    // Write your annotation here as a comment
+  const minimizedCakeList = cakes.map((cake) => {
+    const newCake = {
+      flavor: cake.cakeFlavor,
+      inStock: cake.inStock
+    }
+    return newCake;
+  })
+    return minimizedCakeList;
+
+
   },
 
   onlyInStock() {
@@ -234,20 +254,35 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    /* CODE GOES HERE */
+    //input: cakes array of objects
+    //output: cakes array of only ones in stock
+    //filter()
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const inStockCakes = cakes.filter((cake) => {
+      // console.log(cake.inStock)
+      return cake.inStock > 0;
+    })
+    return inStockCakes;
+
   },
 
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    /* CODE GOES HERE */
+    //input: cake array of objects
+    //output: return a single number of 59 
+    //reduce()
+    //
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const newCakes = cakes.reduce((totalInv, cake) => {
+      // console.log(cake.inStock)
+      totalInv += cake.inStock;
+      return totalInv;
+    }, 0)
+    return newCakes;
+
+
   },
 
   allToppings() {
@@ -255,15 +290,27 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    /* CODE GOES HERE */
+  //input: cakes array of objects
+  //output: array of toppings (unique ones)
+  //forEach()
+  //includes()
+  const everySingleTopping = [];
 
-    // Annotation:
-    // Write your annotation here as a comment
+  const ourToppings = cakes.forEach((cake) => {
+    cake.toppings.forEach((top) => {
+      if (!everySingleTopping.includes(top)) {
+        everySingleTopping.push(top)
+      }
+    })
+  })
+  return everySingleTopping;
   },
 
   groceryList() {
-    // I need to make a grocery list. Please give me an object where the keys are
-    // each topping, and the values are the amount of that topping I need to buy e.g.
+    // I need to make a grocery list. 
+    //Please give me an object where the keys are
+    // each topping, and the values are the amount of that 
+    //topping I need to buy e.g.
     // {
     //    'dutch process cocoa': 1,
     //    'toasted sugar': 3,
@@ -272,18 +319,36 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    /* CODE GOES HERE */
+  //input: cakes array of objects
+  //output: object with ALL toppings with amounts
+  //forEach to get all toppings
+  //count number of times each topping is mentioned
+  //reduce to get one object
 
-    // Annotation:
-    // Write your annotation here as a comment
+  const everySingleTopping = [];
+
+  const ourToppings = cakes.forEach((cake) => {
+    // console.log(cake)
+    cake.toppings.forEach((top) => {
+    // console.log(top)
+      everySingleTopping.push(top)
+      // console.log(everySingleTopping)
+    })
+  })
+  // return everySingleTopping;
+  const countOccurences = everySingleTopping.reduce((acc, cur) => {
+    if (acc[cur]) {
+      acc[cur] += 1
+    } else {
+      acc[cur] = 1
+    }
+    return acc
+    }, {})
+  
+    return countOccurences
+
   }
 };
-
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
@@ -306,10 +371,18 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    /* CODE GOES HERE */
+    //input: array with 8 objects
+    //output: array of 4 objects that are just FE
+    //filter()
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const fePrograms = classrooms.filter((classroom) => {
+      return classroom.program === "FE"
+    })
+    // console.log(fePrograms)
+    return fePrograms
+    // const fePrograms = classrooms.filter(classroom => classroom.program === "FE")
+    // console.log(fePrograms)
+    // return fePrograms
   },
 
   totalCapacities() {
@@ -320,10 +393,30 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    /* CODE GOES HERE */
+    //input: classrooms array with 8 objects
+    //output: object with 2 properties
+    //reduce because it wants an object?
+    //filter for FE
+    //filter for BE
+    //add all fe capacities and save in 1 property
+    //add all be capacities and save in 1 property
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // const fePrograms = classrooms.filter((classroom) => {
+    //   let sumFe = 0;
+    //   let sumBe = 0;
+    //   if (classroom.program === "FE") {
+    //     sumFe += classroom.capacity
+    //   } else {
+    //     sumBe += classroom.capacity
+    //   }
+    //   return sum
+    // })
+    // console.log("351", fePrograms)
+    // // return fePrograms
+    // console.log("354", classrooms[0].capacity)
+    // //how to add all capacities?
+    // const sumFE = classrooms[0].capacity + classrooms[1].capacity + classrooms[2].capacity + classrooms[3].capacity
+  
   },
 
   sortByCapacity() {
