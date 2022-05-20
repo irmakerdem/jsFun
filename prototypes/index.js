@@ -336,13 +336,14 @@ const cakePrompts = {
     })
   })
   // return everySingleTopping;
-  const countOccurences = everySingleTopping.reduce((acc, cur) => {
-    if (acc[cur]) {
-      acc[cur] += 1
+  const countOccurences = everySingleTopping.reduce((list, topp) => {
+   //use bracket notation to create a topp key and give value of 1 or +1
+    if (list[topp]) {
+      list[topp] += 1
     } else {
-      acc[cur] = 1
+      list[topp] = 1
     }
-    return acc
+    return list
     }, {})
   
     return countOccurences
