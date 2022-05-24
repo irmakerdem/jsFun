@@ -604,10 +604,20 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    /* CODE GOES HERE */
+    //input: breweries array of objects
+    //output: single number (sum of # of items in each beers array)
+    //reduce?
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const allbeers = breweries.reduce((sum, beer) => {
+      // console.log("sum", sum)
+      // console.log(beer.beers.length)
+      //return each beer object
+      //how to get all number of objects?
+      sum += beer.beers.length
+      return sum
+    }, 0)
+
+    return allbeers;
   },
 
   getBreweryBeerCount() {
@@ -619,10 +629,23 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    /* CODE GOES HERE */
+    //input: breweries array of objects
+    //output: array of objects
 
-    // Annotation:
-    // Write your annotation here as a comment
+    //map?
+    //manually create a new object with manual keys?
+    //beer.beers.length per brewery
+
+    const organizedBeers = breweries.map((brewery) => {
+      // console.log(brewery.beers.length)
+    
+    const shortObj = {
+      name: brewery.name,
+      beerCount: brewery.beers.length,
+    }
+    return shortObj;
+    })
+    return organizedBeers;
   },
 
   findHighestAbvBeer() {
@@ -630,10 +653,26 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    /* CODE GOES HERE */
+    //input: breweries array of objects
+    //output: object of 1 beer
+    //reduce to get single beer object
+    //highest abv
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const highestAbv = breweries.reduce((acc, cur) => {
+      cur.beers.forEach((beer) => {
+        // console.log(beer)
+        acc.push(beer)
+        // console.log("we are here", acc)
+      })
+      // console.log("we are here", acc)
+      return acc
+    }, [])
+
+    highestAbv.sort((a, b) => {
+      return b.abv-a.abv
+    })
+    // console.log(highestAbv[0])
+    return highestAbv[0]
   }
 };
 
