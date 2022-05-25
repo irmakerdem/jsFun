@@ -591,6 +591,25 @@ const weatherPrompts = {
         return b.humidity - a.humidity
       })
       return highHum[0]
+
+
+
+
+      //IF there were multiple locations with same high humidity:
+      // const highHum = weather2.sort((a,b) => {
+      //   return b.humidity - a.humidity
+      // })
+    
+      // const final = highHum.filter((place) => {
+      //   // return place.humidity === highHum[0].humidity
+      //   return place.humidity === highHum[0].humidity
+      // })
+    
+      // return final
+
+
+
+
   }
 };
 
