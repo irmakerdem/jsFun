@@ -703,9 +703,10 @@ const breweryPrompts = {
     //reduce to get single beer object
     //highest abv
 
+
+  ///SOLUTION #1
     const highestAbv = breweries.reduce((acc, cur) => {
       cur.beers.forEach((beer) => {
-        // console.log(beer)
         acc.push(beer)
         // console.log("we are here", acc)
       })
@@ -716,8 +717,26 @@ const breweryPrompts = {
     highestAbv.sort((a, b) => {
       return b.abv-a.abv
     })
-    // console.log(highestAbv[0])
     return highestAbv[0]
+
+
+
+
+//SOLUTION #2
+  // const allBeers = [];
+
+  // const beerplaces = breweries.forEach((brewery) => {
+  //   brewery.beers.forEach((beer) => {
+  //     if(!allBeers.includes(beer)) {
+  //       allBeers.push(beer)
+  //     }
+  //     allBeers.sort((a, b) => {
+  //       return b.abv-a.abv
+  //     })
+  //   })
+  // })
+  // return allBeers[0]
+
   }
 };
 
