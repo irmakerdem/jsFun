@@ -608,8 +608,6 @@ const weatherPrompts = {
       // return final
 
 
-
-
   }
 };
 
