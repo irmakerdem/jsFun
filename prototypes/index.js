@@ -376,14 +376,10 @@ const classPrompts = {
     //output: array of 4 objects that are just FE
     //filter()
 
-    const fePrograms = classrooms.filter((classroom) => {
-      return classroom.program === "FE"
+    const onlyFE = classrooms.filter(room => {
+      return room.program === "FE"
     })
-    // console.log(fePrograms)
-    return fePrograms
-    // const fePrograms = classrooms.filter(classroom => classroom.program === "FE")
-    // console.log(fePrograms)
-    // return fePrograms
+    return onlyFE
   },
 
   totalCapacities() {
@@ -396,37 +392,86 @@ const classPrompts = {
 
     //input: classrooms array with 8 objects
     //output: object with 2 properties
-    //reduce because it wants an object?
-    //filter for FE
-    //filter for BE
-    //add all fe capacities and save in 1 property
-    //add all be capacities and save in 1 property
 
-    // const fePrograms = classrooms.filter((classroom) => {
-    //   let sumFe = 0;
-    //   let sumBe = 0;
-    //   if (classroom.program === "FE") {
-    //     sumFe += classroom.capacity
-    //   } else {
-    //     sumBe += classroom.capacity
-    //   }
-    //   return sum
-    // })
-    // console.log("351", fePrograms)
-    // // return fePrograms
-    // console.log("354", classrooms[0].capacity)
-    // //how to add all capacities?
-    // const sumFE = classrooms[0].capacity + classrooms[1].capacity + classrooms[2].capacity + classrooms[3].capacity
+
+  //SOLUTION #1
+  //   const onlyFE = classrooms.filter(room => {
+  //     return room.program === "FE"
+  //   })
   
+  //   const onlyBE = classrooms.filter(room => {
+  //     return room.program === "BE"
+  //   })
+  
+  //   const newObj = {
+  //     feCapacity: 0,
+  //     beCapacity: 0
+  //   }
+  
+  //   // console.log("initial", newObj)
+  //   onlyFE.forEach((feRoom) => {
+  //     // console.log("before", newObj)
+  //     newObj.feCapacity += feRoom.capacity
+  //      // console.log("after", newObj)
+  //   })
+  
+  //   onlyBE.forEach((beRoom) => {
+  //     // console.log("beforeeeeee BE", newObj)
+  //     newObj.beCapacity += beRoom.capacity
+  //      // console.log("afterrrrr BE", newObj)
+  //   })
+  // return newObj
+ 
+
+  //SOLUTION #2
+  const newObj = {
+    feCapacity: 0,
+    beCapacity: 0
+  }
+
+  classrooms.forEach((room) => {
+    if(room.program === "FE") {
+      newObj.feCapacity += room.capacity
+    } else {
+      newObj.beCapacity += room.capacity
+    }
+  })
+  return newObj
+
+
+
+
+
+   //SOLUTION #3
+  //  const ourClassrooms = classrooms.reduce((acc, cur) => {
+  //     if (!acc.feCapacity) {
+  //       acc.feCapacity = 0
+  //     }
+  //     if (!acc.beCapacity) {
+  //       acc.beCapacity = 0
+  //     }
+  //     if(cur.program === "FE") {
+  //       acc.feCapacity += cur.capacity
+  //     } else {
+  //       acc.beCapacity += cur.capacity
+  //     }
+  //     return acc
+  //   },{})
+
+  // return ourClassrooms
+
+
+
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    /* CODE GOES HERE */
+    const sortedArr = classrooms.sort((a, b) => {
+      return a.capacity-b.capacity
+    })
 
-    // Annotation:
-    // Write your annotation here as a comment
+    return sortedArr
   }
 };
 
