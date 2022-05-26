@@ -629,10 +629,28 @@ const nationalParksPrompts = {
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     //}
 
-    /* CODE GOES HERE */
+  //input: array of objects
+    //output: object with 2 properties (each property is an array)
+    //visited property T/F
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const obj = {
+      parksToVisit: [],
+      parksVisited: []
+    }
+      
+    const getVisitedParks = nationalParks.filter((yes) => {
+      if(yes.visited) {
+        obj.parksVisited.push(yes.name)
+      }
+    })
+    
+    const getToVisitParks = nationalParks.filter((no) => {
+      if(!no.visited) {
+        obj.parksToVisit.push(no.name)
+      }
+    })
+    
+    return obj
   },
 
   getParkInEachState() {
@@ -645,10 +663,18 @@ const nationalParksPrompts = {
     // { Florida: 'Everglades' } ]
 
 
-    /* CODE GOES HERE */
+    //input: array of 6 objects
+    //output: array of 6 objects
+    //map?
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // { location: "name" }
+    // place.location: place.name 
+
+    const getParks = nationalParks.map((place) => {
+      // console.log(place)
+      return {[place.location]: place.name}
+    })
+    return getParks
   },
 
   getParkActivities() {
@@ -667,10 +693,28 @@ const nationalParksPrompts = {
     //   'backpacking',
     //   'rock climbing' ]
 
-    /* CODE GOES HERE */
+//input: array of 6 objects
+//output: array of strings
+//grab all activities
+  //activities.forEach()
+  //push to empty array
+//ensure no duplicates
+  //start with an empty array
+  //check if activity exists in array
+    //if not, add to array
+    //if it doesn't, do nothing with activity (dont add to array)
+//reduce?
 
-    // Annotation:
-    // Write your annotation here as a comment
+  const allActivities = nationalParks.reduce((uniqueActivitiesArr, park) => {
+    park.activities.forEach((activity) => {
+      if(!uniqueActivitiesArr.includes(activity)) {
+        uniqueActivitiesArr.push(activity)
+      }
+    })
+    // console.log(uniqueActivitiesArr)
+    return uniqueActivitiesArr
+  }, [])
+  return allActivities
   }
 };
 
