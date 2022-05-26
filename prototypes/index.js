@@ -260,7 +260,7 @@ const cakePrompts = {
 
     const inStockCakes = cakes.filter((cake) => {
       // console.log(cake.inStock)
-      return cake.inStock > 0;
+      return cake.inStock;
     })
     return inStockCakes;
 
