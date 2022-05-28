@@ -128,7 +128,7 @@ orangePetNames(animals) {
 
 // DATASET: clubs from ./datasets/clubs
 const clubPrompts = {
-  membersBelongingToClubs() {
+  membersBelongingToClubs(clubs) {
     // Your function should access the clubs data through a parameter (it is being passed as an argument in the test file)
     // Create an object whose keys are the names of people, and whose values are
     // arrays that include the names of the clubs that person is a part of. e.g.
@@ -138,10 +138,26 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    /* CODE GOES HERE */
+    //input: array of objects
+    //output: object
+    //get access to all members
+    //when you do a forEach, you still have access to acc!!!
+    //ensure there is no rewriting of each club everytime forEach iterates
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const newMembers = clubs.reduce((acc, cur) => {
+      cur.members.forEach((member) => {
+        // console.log(member)
+        if(!acc[member]) {
+          acc[member] = [cur.club]
+        // console.log(acc)
+        } else {
+          acc[member].push(cur.club)
+        }
+      })
+     // console.log("37", acc)
+      return acc
+    }, {})
+    return newMembers
   }
 };
 
