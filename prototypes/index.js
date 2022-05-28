@@ -484,7 +484,7 @@ const classPrompts = {
 // DATASET: books from './datasets/books
 
 const bookPrompts = {
-  removeViolence() {
+  removeViolence(books) {
     // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
@@ -494,14 +494,21 @@ const bookPrompts = {
     //   'The Curious Incident of the Dog in the Night - Time', 'The Bell Jar',
     //   'Catch-22', 'Treasure Island']
 
+  //input: array of 19 objects
+  //output: array of strings (titles that are NOT horror or true crime)
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const newBooks = books.filter((book) => {
+      return book.genre !== "Horror" && book.genre !== "True Crime"
+    })
+  
+    const bestBooks = newBooks.map((book) => {
+      return book.title
+    })
+  
+    return bestBooks
 
   },
-  getNewBooks() {
+  getNewBooks(books) {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
 
@@ -509,10 +516,21 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    /* CODE GOES HERE */
+ //input: array of 19 objects
+  //output: array of objects (published >= 1990) and
+  
+  const newBooks = books.filter((book) => {
+    return book.published >= 1990
+  })
 
-    // Annotation:
-    // Write your annotation here as a comment
+  const bestBooks = newBooks.map((book) => {
+    return { 
+      title: book.title, 
+      year: book.published 
+    }
+  })
+
+  return bestBooks
   }
 
 };
