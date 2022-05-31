@@ -986,10 +986,26 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const getBosses = Object.values(bosses)
+    // console.log(getBosses)
+    
+    const newBoss = getBosses.map((boss) => {
+      return {
+        bossName: boss.name, 
+        sidekickLoyalty: 0
+      }
+    })
+    // console.log("newBoss", newBoss)
+  
+    const newSide = sidekicks.forEach((sidePerson) => {
+      // console.log("sidePerson", sidePerson)
+      newBoss.forEach((bossPerson) => {
+        if(bossPerson.bossName === sidePerson.boss) {
+          bossPerson.sidekickLoyalty += sidePerson.loyaltyToBoss
+        }
+      })
+    })
+    return newBoss
   }
 };
 
