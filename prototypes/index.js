@@ -902,24 +902,107 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    /* CODE GOES HERE */
+  //input1: array of 9 objects(instructors)
+    //name
+  ///input2: array of 4 objects (cohorts)
+    //studentCount
+  //output: array of 9 objects 
+  //how to use 'module' in both arrays??
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const newArr = instructors.map((teacher) => {
+      // console.log("t", teacher)
+      const countFind = cohorts.find((group) => {
+        // console.log("g", group)
+        return group.module === teacher.module
+      })
+      return {
+        name: teacher.name,
+        studentCount: countFind.studentCount
+      }
+    })
+    return newArr
   },
 
   studentsPerInstructor() {
     // Return an object of how many students per teacher there are in each cohort e.g.
     // {
-    // cohort1806: 9,
-    // cohort1804: 10.5
-    // }
+    //   cohort1806: 15,
+    //   cohort1804: 7,
+    //   cohort1803: 10,
+    //   cohort1801: 9
+    // })
 
-    /* CODE GOES HERE */
+  //input1: array of 9 objects(instructors)
+  //input2: array of 4 objects (cohorts)
+  //output: object of 4 key-value pairs
 
-    // Annotation:
-    // Write your annotation here as a comment
+  //# of students/# of teachers (per module)
+  //module as connector
+  //cohorts.reduce
+  //instructors.filter
+
+
+  //SOLUTION #1
+  // let newObj = {}
+  // cohorts.forEach((cohorttt) => {
+  //   const instructorNum = instructors.filter((teacher) => {
+  //     return teacher.module === cohorttt.module
+  //   })
+  //   const cohortName = `cohort${cohorttt.cohort}`
+  //   const ratio = cohorttt.studentCount / instructorNum.length
+  //   newObj[cohortName] = ratio
+  // })
+  // // console.log(newObj)
+  // return newObj
+
+
+  //SOLUTION #2
+  const cohortThing = cohorts.reduce((acc, cohorttt) => {
+
+    const instructorNum = instructors.filter((teacher) => {
+      return teacher.module === cohorttt.module
+    })
+
+    const cohortName = `cohort${cohorttt.cohort}`
+
+    const ratio = cohorttt.studentCount / instructorNum.length
+
+    acc[cohortName] = ratio
+
+    return acc
+  },{})
+
+  return cohortThing
+
+
+
+  //WORKS BUT DO NOT USE!!!!
+  // const instructorThing = instructors.reduce((acc, cur) => {
+  //   // console.log(cur)
+  //   const cohortThing = cohorts.forEach((cohorttt) => {
+  //     // console.log(cohorttt)
+  //     const instructorNum = instructors.filter((teacher) => {
+  //       return teacher.module === cohorttt.module
+  //     // console.log(instructorNum)
+  //     // console.log(instructorNum.length)
+  //     })
+  //        // console.log(instructorNum)
+  //     const cohortName = `cohort${cohorttt.cohort}`
+  //     // console.log(cohortName)
+  //     const ratio = cohorttt.studentCount / instructorNum.length
+  //     // console.log(cohorttt.studentCount)
+  //     // console.log(instructorNum.length)
+  //     // console.log(ratio)
+  //     acc[cohortName] = ratio
+  //   })
+  //     console.log(acc)
+  //   // console.log("966", cohortThing)
+  //   return acc
+  // }, {})
+  //   return instructorThing
   },
+
+  
 
   modulesPerTeacher() {
     // Return an object where each key is an instructor name and each value is
@@ -1253,10 +1336,10 @@ const dinosaurPrompts = {
       }]
     */
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    //problem: which humans are not in the movies casts arrays
+    //input: movies (array) and humans (object)
+    //output: array of human objects
+    //reduce and filter
   },
 
   actorsAgesInMovies() {
