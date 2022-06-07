@@ -970,8 +970,7 @@ const turingPrompts = {
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-
-
+   
 
 
 
@@ -1043,10 +1042,13 @@ const astronomyPrompts = {
     //     color: 'red' }
     // ]
 
-    /* CODE GOES HERE */
+    const constellationKeys = Object.keys(constellations);
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const filteredStars = stars.filter((star) => {
+      return constellationKeys.includes(star.constellation.toLowerCase())
+    });
+
+    return filteredStars;
   },
 
   starsByColor() {
@@ -1112,10 +1114,20 @@ const ultimaPrompts = {
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
-    /* CODE GOES HERE */
 
-    // Annotation:
-    // Write your annotation here as a comment
+    //input1: characters array of 4 objects
+    //input2: weapons object of 6 key-values
+    //output: single number (sum of damage inside weapons object but counting occurences of each weapon)
+    //reduce
+
+    const getChar = characters.reduce((acc, cur) => {
+      cur.weapons.forEach((tool) => {
+        acc += weapons[tool].damage
+      })
+      return acc
+    },0)
+
+    return getChar
   },
 
   charactersByTotal() {
@@ -1123,10 +1135,28 @@ const ultimaPrompts = {
     // Return the sum damage and total range for each character as an object.
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
-    /* CODE GOES HERE */
 
-    // Annotation:
-    // Write your annotation here as a comment
+    //input: characters array of objects
+    //input2: weapons object of objects
+    //output: array of 4 objects (key  is character name: value is object)
+
+    const getChar = characters.reduce((acc, cur) => {
+
+      const newObj = {
+        [cur.name]: {damage: 0, range: 0}
+      }
+      
+      cur.weapons.forEach((tool) => {
+        newObj[cur.name].damage += weapons[tool].damage
+        newObj[cur.name].range += weapons[tool].range
+      })
+      
+      acc.push(newObj)
+      
+      return acc
+    },[])
+    
+    return getChar
   },
 };
 

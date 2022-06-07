@@ -559,7 +559,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Astronomy Prompts", () => {
-    it.skip("starsInConstellations", () => {
+    it("starsInConstellations", () => {
       const e = astronomyPrompts.starsInConstellations();
 
       expect(e).to.deep.equal([{
@@ -663,13 +663,13 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Ultima Prompts", () => {
-    it.skip("totalDamage", () => {
+    it("totalDamage", () => {
       const e = ultimaPrompts.totalDamage();
 
       expect(e).to.deep.equal(113)
     });
 
-    it.skip("charactersByTotal", () => {
+    it("charactersByTotal", () => {
       const e = ultimaPrompts.charactersByTotal();
 
       expect(e).to.deep.equal([{
